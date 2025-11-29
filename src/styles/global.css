@@ -141,6 +141,10 @@ a:hover {
   background-color: var(--light-gray);
 }
 
+.section-white {
+  background-color: var(--white);
+}
+
 /* Utility Classes */
 .text-center {
   text-align: center;

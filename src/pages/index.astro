@@ -10,13 +10,13 @@ import FloatingButtons from '../components/FloatingButtons.astro';
 
   <main>
     <!-- Hero Section -->
-    <section class="hero section-dark">
+    <section class="hero">
       <div class="container">
         <div class="hero-content">
           <div class="hero-logo">
             <img src="/logo.png" alt="Santech-Master" />
           </div>
-          <p class="hero-subtitle text-white">Ваш надёжный помощник в решении сантехнических проблем в городе Алматы</p>
+          <p class="hero-subtitle">Ваш надёжный помощник в решении сантехнических проблем в городе Алматы</p>
 
           <div class="hero-features">
             <div class="feature">• Услуги сантехника в Алматы</div>
@@ -218,6 +218,7 @@ import FloatingButtons from '../components/FloatingButtons.astro';
     min-height: 70vh;
     display: flex;
     align-items: center;
+    background: linear-gradient(135deg, #f8f5ff 0%, #f0e9ff 100%);
   }
 
   .hero-content {
@@ -239,6 +240,7 @@ import FloatingButtons from '../components/FloatingButtons.astro';
   .hero-subtitle {
     font-size: 1.25rem;
     margin: 1rem 0 2rem;
+    color: var(--text-primary);
   }
 
   .hero-features {
@@ -250,7 +252,7 @@ import FloatingButtons from '../components/FloatingButtons.astro';
   }
 
   .feature {
-    color: var(--white);
+    color: var(--text-primary);
     font-weight: 600;
   }
 
