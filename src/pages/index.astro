@@ -12,8 +12,8 @@ import Footer from '../components/Footer.astro';
     <section class="hero section-dark">
       <div class="container">
         <div class="hero-content">
-          <div class="logo-placeholder">
-            <h1 class="text-white">SANTECH-MASTER</h1>
+          <div class="hero-logo">
+            <img src="/logo.png" alt="Santech-Master" />
           </div>
           <p class="hero-subtitle text-white">Ваш надёжный помощник в решении сантехнических проблем в городе Алматы</p>
 
@@ -29,31 +29,65 @@ import Footer from '../components/Footer.astro';
     </section>
 
     <!-- Services -->
-    <section id="services" class="section">
+    <section id="services" class="section section-white">
       <div class="container">
         <h2 class="text-center">Наши услуги</h2>
-        <p class="text-center text-light mb-xl">Мы предоставляем широкий спектр сантехнических услуг</p>
+        <p class="text-center text-light mb-xl">Мы предоставляем широкий спектр сантехнических услуг. Ознакомьтесь с перечнем услуг, их стоимостью и условиями.</p>
 
-        <div class="grid">
-          <div class="card">
-            <h3>Прочистка засоров</h3>
-            <p>Быстрое устранение засоров в трубах с использованием современных методов</p>
+        <div class="services-list">
+          <!-- Service 1 -->
+          <div class="service-row">
+            <div class="service-image">
+              <img src="/images/service-1.png" alt="Прочистка засоров" />
+            </div>
+            <div class="service-content">
+              <h3>Прочистка засоров</h3>
+              <p>Быстрое устранение засоров в трубах с использованием современных методов и оборудования.</p>
+            </div>
           </div>
-          <div class="card">
-            <h3>Замена труб</h3>
-            <p>Профессиональная замена труб в жилых и коммерческих помещениях</p>
+
+          <!-- Service 2 -->
+          <div class="service-row reverse">
+            <div class="service-image">
+              <img src="/images/service-2.png" alt="Замена труб" />
+            </div>
+            <div class="service-content">
+              <h3>Замена труб</h3>
+              <p>Профессиональная замена труб в жилых и коммерческих помещениях. Гарантия на все работы.</p>
+            </div>
           </div>
-          <div class="card">
-            <h3>Установка смесителей и кранов</h3>
-            <p>Монтаж и замена смесителей и кранов любой сложности</p>
+
+          <!-- Service 3 -->
+          <div class="service-row">
+            <div class="service-image">
+              <img src="/images/service-3.png" alt="Установка смесителей" />
+            </div>
+            <div class="service-content">
+              <h3>Установка смесителей и кранов</h3>
+              <p>Монтаж и замена смесителей и кранов любой сложности. Качественные материалы и комплектующие.</p>
+            </div>
           </div>
-          <div class="card">
-            <h3>Ремонт сантехнического оборудования</h3>
-            <p>Ремонт унитазов, раковин, ванн и другого оборудования</p>
+
+          <!-- Service 4 -->
+          <div class="service-row reverse">
+            <div class="service-image">
+              <img src="/images/service-4.png" alt="Ремонт оборудования" />
+            </div>
+            <div class="service-content">
+              <h3>Ремонт сантехнического оборудования</h3>
+              <p>Ремонт унитазов, раковин, ванн и другого сантехнического оборудования. Быстрое устранение неисправностей.</p>
+            </div>
           </div>
-          <div class="card">
-            <h3>Монтаж систем водоснабжения</h3>
-            <p>Проектирование и установка систем водоснабжения</p>
+
+          <!-- Service 5 -->
+          <div class="service-row">
+            <div class="service-image">
+              <img src="/images/service-5.png" alt="Монтаж водоснабжения" />
+            </div>
+            <div class="service-content">
+              <h3>Монтаж систем водоснабжения</h3>
+              <p>Проектирование и установка систем водоснабжения в новых домах и при перепланировке.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -190,6 +224,16 @@ import Footer from '../components/Footer.astro';
     margin: 0 auto;
   }
 
+  .hero-logo {
+    margin-bottom: 2rem;
+  }
+
+  .hero-logo img {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+  }
+
   .hero-subtitle {
     font-size: 1.25rem;
     margin: 1rem 0 2rem;
@@ -208,6 +252,53 @@ import Footer from '../components/Footer.astro';
     font-weight: 600;
   }
 
+  /* Services List */
+  .services-list {
+    margin-top: 3rem;
+  }
+
+  .service-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+
+  .service-row.reverse {
+    direction: rtl;
+  }
+
+  .service-row.reverse > * {
+    direction: ltr;
+  }
+
+  .service-image {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+  }
+
+  .service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+  }
+
+  .service-content h3 {
+    color: var(--text-primary);
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-content p {
+    color: var(--text-light);
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -215,7 +306,7 @@ import Footer from '../components/Footer.astro';
     margin-top: 2rem;
   }
 
-  .card, .price-card {
+  .price-card {
     background: var(--white);
     padding: 2rem;
     border-radius: var(--radius-md);
@@ -223,12 +314,12 @@ import Footer from '../components/Footer.astro';
     transition: var(--transition);
   }
 
-  .card:hover, .price-card:hover {
+  .price-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 12px rgba(124, 58, 237, 0.2);
   }
 
-  .card h3, .price-card h3 {
+  .price-card h3 {
     color: var(--purple-primary);
     margin-bottom: 1rem;
   }
@@ -287,6 +378,16 @@ import Footer from '../components/Footer.astro';
   @media (max-width: 768px) {
     .hero-features {
       font-size: 1rem;
+    }
+
+    .service-row,
+    .service-row.reverse {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .service-image {
+      height: 250px;
     }
 
     .grid {
