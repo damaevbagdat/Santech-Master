@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FloatingButtons from '../components/FloatingButtons.astro';
+import ContactForm from '../components/ContactForm.astro';
 ---
 
 <BaseLayout title="Главная - Санехнические услуги в Алматы">
@@ -194,13 +195,18 @@ import FloatingButtons from '../components/FloatingButtons.astro';
     <section id="contacts" class="section section-dark">
       <div class="container">
         <h2 class="text-white text-center">Контакты</h2>
-        <div class="contacts text-center">
+        <p class="text-white text-center mb-lg">Оставьте заявку, и мы свяжемся с вами в ближайшее время</p>
+
+        <!-- Форма обратной связи -->
+        <ContactForm />
+
+        <div class="contacts text-center mt-xl">
           <div class="contact-block">
             <h3 class="text-white">Время работы: 24/7</h3>
             <h3 class="text-white">Адрес: Город Алматы</h3>
             <div class="mt-lg">
-              <a href="https://wa.me/77000000000" target="_blank" class="btn">WhatsApp</a>
-              <a href="tel:+77000000000" class="btn ml-md">Телефон</a>
+              <a href="https://wa.me/77754710129" target="_blank" class="btn">WhatsApp</a>
+              <a href="tel:+77754710129" class="btn ml-md">Телефон</a>
             </div>
           </div>
         </div>
