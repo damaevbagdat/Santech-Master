@@ -1,0 +1,296 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Главная - Санехнические услуги в Алматы">
+  <Header />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero section-dark">
+      <div class="container">
+        <div class="hero-content">
+          <div class="logo-placeholder">
+            <h1 class="text-white">SANTECH-MASTER</h1>
+          </div>
+          <p class="hero-subtitle text-white">Ваш надёжный помощник в решении сантехнических проблем в городе Алматы</p>
+
+          <div class="hero-features">
+            <div class="feature">• Услуги сантехника в Алматы</div>
+            <div class="feature">• Быстрый выезд</div>
+            <div class="feature">• Качественная работа по гарантии</div>
+          </div>
+
+          <a href="#contacts" class="btn mt-lg">Вызвать</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section">
+      <div class="container">
+        <h2 class="text-center">Наши услуги</h2>
+        <p class="text-center text-light mb-xl">Мы предоставляем широкий спектр сантехнических услуг</p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Прочистка засоров</h3>
+            <p>Быстрое устранение засоров в трубах с использованием современных методов</p>
+          </div>
+          <div class="card">
+            <h3>Замена труб</h3>
+            <p>Профессиональная замена труб в жилых и коммерческих помещениях</p>
+          </div>
+          <div class="card">
+            <h3>Установка смесителей и кранов</h3>
+            <p>Монтаж и замена смесителей и кранов любой сложности</p>
+          </div>
+          <div class="card">
+            <h3>Ремонт сантехнического оборудования</h3>
+            <p>Ремонт унитазов, раковин, ванн и другого оборудования</p>
+          </div>
+          <div class="card">
+            <h3>Монтаж систем водоснабжения</h3>
+            <p>Проектирование и установка систем водоснабжения</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Us -->
+    <section id="why" class="section section-gray">
+      <div class="container">
+        <h2 class="text-center">Почему выбирают нас</h2>
+        <div class="grid">
+          <div class="why-item text-center">
+            <h3>Опыт и профессионализм</h3>
+            <p>Наши мастера имеют большой опыт работы и глубокие знания в области сантехники</p>
+          </div>
+          <div class="why-item text-center">
+            <h3>Быстрое реагирование</h3>
+            <p>Мы оперативно реагируем на заявки и приезжаем на вызов в кратчайшие сроки</p>
+          </div>
+          <div class="why-item text-center">
+            <h3>Гарантия качества</h3>
+            <p>Все выполненные работы сопровождаются гарантией качества и надежности</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="section section-dark">
+      <div class="container">
+        <h2 class="text-white text-center">Стоимость услуг</h2>
+        <div class="grid">
+          <div class="price-card">
+            <h3>Первичный осмотр</h3>
+            <div class="price">5000 KZT</div>
+          </div>
+          <div class="price-card">
+            <h3>Устранение засора</h3>
+            <div class="price">от 3000 KZT</div>
+          </div>
+          <div class="price-card">
+            <h3>Замена смесителя</h3>
+            <div class="price">от 10000 KZT</div>
+          </div>
+          <div class="price-card">
+            <h3>Ремонт труб</h3>
+            <div class="price">от 10000 KZT</div>
+          </div>
+          <div class="price-card">
+            <h3>Монтаж сантехники</h3>
+            <div class="price">от 15000 KZT</div>
+          </div>
+          <div class="price-card">
+            <h3>Обслуживание отопления</h3>
+            <div class="price">от 10000 KZT</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="section">
+      <div class="container">
+        <h2 class="text-center">Быстрый выезд</h2>
+        <p class="text-center mb-xl">Мы ценим ваше время! Наш мастер прибудет к вам в течение 30 минут после вызова</p>
+
+        <div class="grid">
+          <div class="process-item">
+            <div class="number">1</div>
+            <h3>Заявка и консультация</h3>
+            <p>Клиент оставляет заявку на вызов сантехника</p>
+          </div>
+          <div class="process-item">
+            <div class="number">2</div>
+            <h3>Выезд сантехника</h3>
+            <p>Сантехник выезжает на объект в течение 30 минут</p>
+          </div>
+          <div class="process-item">
+            <div class="number">3</div>
+            <h3>Диагностика проблемы</h3>
+            <p>Специалист проводит диагностику</p>
+          </div>
+          <div class="process-item">
+            <div class="number">4</div>
+            <h3>Выполнение работ</h3>
+            <p>Сантехник выполняет необходимые работы</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="section" style="background: linear-gradient(135deg, var(--purple-primary), var(--purple-dark));">
+      <div class="container text-center">
+        <h2 class="text-white">Отзывы клиентов</h2>
+        <div class="review">
+          <p class="text-white">"Обратилась за помощью в срочном порядке, мастер приехал быстро и устранил течь в трубе. Очень доволен работой!"</p>
+          <p class="text-white"><strong>- Марина, Алматы</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacts -->
+    <section id="contacts" class="section section-dark">
+      <div class="container">
+        <h2 class="text-white text-center">Контакты</h2>
+        <div class="contacts text-center">
+          <div class="contact-block">
+            <h3 class="text-white">Время работы: 24/7</h3>
+            <h3 class="text-white">Адрес: Город Алматы</h3>
+            <div class="mt-lg">
+              <a href="https://wa.me/77000000000" target="_blank" class="btn">WhatsApp</a>
+              <a href="tel:+77000000000" class="btn ml-md">Телефон</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: 4rem 0;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-content {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    margin: 1rem 0 2rem;
+  }
+
+  .hero-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem 0;
+    font-size: 1.25rem;
+  }
+
+  .feature {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .card, .price-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+  }
+
+  .card:hover, .price-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(124, 58, 237, 0.2);
+  }
+
+  .card h3, .price-card h3 {
+    color: var(--purple-primary);
+    margin-bottom: 1rem;
+  }
+
+  .price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--purple-primary);
+    margin: 1rem 0;
+  }
+
+  .why-item, .process-item {
+    padding: 1.5rem;
+  }
+
+  .why-item h3 {
+    color: var(--purple-primary);
+  }
+
+  .number {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid var(--purple-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--purple-primary);
+    margin: 0 auto 1rem;
+  }
+
+  .review {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+  }
+
+  .review p {
+    font-size: 1.25rem;
+    font-style: italic;
+    margin: 1rem 0;
+  }
+
+  .contacts {
+    margin-top: 2rem;
+  }
+
+  .ml-md {
+    margin-left: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero-features {
+      font-size: 1rem;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

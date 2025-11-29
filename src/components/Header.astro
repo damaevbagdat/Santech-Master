@@ -1,0 +1,97 @@
+---
+---
+
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <a href="/" class="logo">
+        <span class="logo-text">SANTECH-MASTER</span>
+      </a>
+      
+      <ul class="nav-menu">
+        <li><a href="/#services">Услуги</a></li>
+        <li><a href="/#about">О нас</a></li>
+        <li><a href="/#pricing">Стоимость услуг</a></li>
+        <li><a href="/#why">Почему мы?</a></li>
+        <li><a href="/#reviews">Отзывы</a></li>
+        <li><a href="/#contacts">Контакты</a></li>
+      </ul>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--purple-primary);
+    text-decoration: none;
+  }
+  
+  .logo-text {
+    display: block;
+  }
+  
+  .nav-menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  
+  .nav-menu a {
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: var(--transition);
+  }
+  
+  .nav-menu a:hover {
+    color: var(--purple-primary);
+  }
+  
+  .mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--purple-primary);
+    transition: var(--transition);
+  }
+  
+  @media (max-width: 768px) {
+    .nav-menu {
+      display: none;
+    }
+    
+    .mobile-menu-toggle {
+      display: flex;
+    }
+  }
+</style>

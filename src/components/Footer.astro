@@ -1,0 +1,117 @@
+---
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Santech-Master</h3>
+        <p>Профессиональные сантехнические услуги в Алматы</p>
+        <p class="footer-tagline">Быстрый выезд • Качественная работа • Гарантия</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Контакты</h4>
+        <p>Город Алматы</p>
+        <p>Режим работы: 24/7</p>
+        <p>
+          <a href="https://wa.me/77000000000" target="_blank" class="contact-link">WhatsApp</a>
+        </p>
+        <p>
+          <a href="tel:+77000000000" class="contact-link">+7 (700) 000-00-00</a>
+        </p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Услуги</h4>
+        <ul class="footer-links">
+          <li><a href="/#services">Прочистка засоров</a></li>
+          <li><a href="/#services">Замена труб</a></li>
+          <li><a href="/#services">Установка смесителей</a></li>
+          <li><a href="/#services">Ремонт оборудования</a></li>
+          <li><a href="/#services">Монтаж водоснабжения</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; {new Date().getFullYear()} Santech-Master. Все права защищены.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--dark-bg);
+    color: var(--white);
+    padding: var(--spacing-2xl) 0 var(--spacing-lg);
+  }
+  
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .footer-section h3 {
+    color: var(--purple-light);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.5rem;
+  }
+  
+  .footer-section h4 {
+    color: var(--purple-light);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .footer-section p {
+    margin-bottom: var(--spacing-xs);
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .footer-tagline {
+    color: var(--purple-light);
+    font-weight: 600;
+  }
+  
+  .contact-link {
+    color: var(--white);
+    text-decoration: underline;
+  }
+  
+  .contact-link:hover {
+    color: var(--purple-light);
+  }
+  
+  .footer-links {
+    list-style: none;
+  }
+  
+  .footer-links li {
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .footer-links a {
+    color: rgba(255, 255, 255, 0.8);
+    transition: var(--transition);
+  }
+  
+  .footer-links a:hover {
+    color: var(--purple-light);
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+    }
+  }
+</style>
