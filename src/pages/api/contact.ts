@@ -1,38 +1,7 @@
 import type { APIRoute } from 'astro';
 
 const TELEGRAM_BOT_TOKEN = import.meta.env.TELEGRAM_BOT_TOKEN || '8597371163:AAGnoWQkEzj7LY5Z7Fl6uUISRLoxFoDzNV0';
-
-// Функция для получения chat_id пользователя по номеру телефона
-async function getChatIdByPhone(phone: string): Promise<string | null> {
-  try {
-    // Для получения chat_id, пользователь должен хотя бы раз написать боту
-    // Используем метод getUpdates для получения последних сообщений
-    const response = await fetch(
-      `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getUpdates`
-    );
-
-    if (!response.ok) {
-      console.error('Failed to get updates from Telegram');
-      return null;
-    }
-
-    const data = await response.json();
-
-    // Ищем последнее сообщение от пользователя
-    if (data.result && data.result.length > 0) {
-      // Берем chat_id из последнего сообщения
-      const lastUpdate = data.result[data.result.length - 1];
-      if (lastUpdate.message?.chat?.id) {
-        return String(lastUpdate.message.chat.id);
-      }
-    }
-
-    return null;
-  } catch (error) {
-    console.error('Error getting chat_id:', error);
-    return null;
-  }
-}
+const TELEGRAM_CHAT_ID = '1243618822'; // Chat ID владельца бота
 
 // Функция для отправки сообщения в Telegram
 async function sendTelegramMessage(chatId: string, message: string): Promise<boolean> {
@@ -81,20 +50,6 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    // Получаем chat_id
-    const chatId = await getChatIdByPhone('+77082846525');
-
-    if (!chatId) {
-      // Если не удалось получить chat_id, возвращаем ошибку
-      return new Response(
-        JSON.stringify({
-          success: false,
-          error: 'Не удалось отправить сообщение. Пожалуйста, попробуйте позже или свяжитесь с нами по телефону.'
-        }),
-        { status: 500 }
-      );
-    }
-
     // Формируем текст сообщения
     const telegramMessage = `
 🔔 <b>Новая заявка с сайта Santech-Master</b>
@@ -107,7 +62,7 @@ ${userMessage ? `💬 <b>Сообщение:</b>\n${userMessage}` : ''}
     `.trim();
 
     // Отправляем сообщение в Telegram
-    const sent = await sendTelegramMessage(chatId, telegramMessage);
+    const sent = await sendTelegramMessage(TELEGRAM_CHAT_ID, telegramMessage);
 
     if (sent) {
       return new Response(
