@@ -1,0 +1,51 @@
+---
+// Google Analytics и Яндекс.Метрика
+const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX';
+const YANDEX_METRIKA_ID = import.meta.env.PUBLIC_YANDEX_METRIKA_ID || '12345678';
+---
+
+<!-- Google Analytics (GA4) -->
+{GA_MEASUREMENT_ID && GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX' && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID, {
+        anonymize_ip: true,
+        cookie_flags: 'SameSite=None;Secure'
+      });
+    </script>
+  </>
+)}
+
+<!-- Яндекс.Метрика -->
+{YANDEX_METRIKA_ID && YANDEX_METRIKA_ID !== '12345678' && (
+  <>
+    <script is:inline define:vars={{ YANDEX_METRIKA_ID }}>
+      (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === r) { return; }
+        }
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+      })
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+      ym(YANDEX_METRIKA_ID, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true,
+        ecommerce:"dataLayer"
+      });
+    </script>
+    <noscript>
+      <div>
+        <img src={`https://mc.yandex.ru/watch/${YANDEX_METRIKA_ID}`} style="position:absolute; left:-9999px;" alt="" />
+      </div>
+    </noscript>
+  </>
+)}
