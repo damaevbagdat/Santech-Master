@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Варианты дизайна - Santech-Master</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Панель переключения вариантов */
+    .variant-selector {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10000;
+      background: white;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .variant-selector h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .variant-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .variant-btn {
+      padding: 0.75rem 1rem;
+      border: 2px solid #7C3AED;
+      background: white;
+      color: #7C3AED;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+
+    .variant-btn:hover {
+      background: #7C3AED;
+      color: white;
+    }
+
+    .variant-btn.active {
+      background: #7C3AED;
+      color: white;
+    }
+
+    /* Общие стили */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .section {
+      padding: 4rem 0;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .service-preview, .price-preview {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      margin: 1rem;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+    }
+
+    /* ВАРИАНТ 1: Плавный градиент */
+    body.variant-1 {
+      background: linear-gradient(
+        to bottom,
+        #f8f5ff 0%,
+        #f0e9ff 20%,
+        #e9dcff 40%,
+        #d4c5f9 60%,
+        #c5b3f0 80%,
+        #7C3AED 100%
+      );
+      min-height: 100vh;
+    }
+
+    body.variant-1 .section {
+      background: transparent;
+    }
+
+    body.variant-1 .hero {
+      color: #1a1a1a;
+    }
+
+    body.variant-1 .bottom-section {
+      color: white;
+    }
+
+    /* ВАРИАНТ 2: Монохромная фиолетовая палитра */
+    body.variant-2 .hero {
+      background: linear-gradient(135deg, #6D28D9, #7C3AED);
+      color: white;
+    }
+
+    body.variant-2 .section-1 {
+      background: #f8f5ff;
+    }
+
+    body.variant-2 .section-2 {
+      background: #f0e9ff;
+    }
+
+    body.variant-2 .section-3 {
+      background: #e9dcff;
+    }
+
+    body.variant-2 .section-4 {
+      background: #d4c5f9;
+    }
+
+    body.variant-2 .section-5 {
+      background: linear-gradient(135deg, #7C3AED, #6D28D9);
+      color: white;
+    }
+
+    /* ВАРИАНТ 3: Минималистичный светлый */
+    body.variant-3 {
+      background: #fafafa;
+    }
+
+    body.variant-3 .hero {
+      background: linear-gradient(135deg, #6D28D9, #7C3AED);
+      color: white;
+      padding: 6rem 0;
+    }
+
+    body.variant-3 .section {
+      background: transparent;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    body.variant-3 .section:last-child {
+      background: linear-gradient(135deg, #7C3AED, #6D28D9);
+      color: white;
+      border-bottom: none;
+    }
+
+    body.variant-3 h2 {
+      color: #7C3AED;
+    }
+
+    body.variant-3 .section:last-child h2 {
+      color: white;
+    }
+
+    /* ВАРИАНТ 4: Волны и переходы */
+    body.variant-4 {
+      background: #ffffff;
+    }
+
+    body.variant-4 .hero {
+      background: linear-gradient(135deg, #6D28D9, #7C3AED);
+      color: white;
+      position: relative;
+      padding-bottom: 8rem;
+    }
+
+    body.variant-4 .wave {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    body.variant-4 .wave svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 80px;
+    }
+
+    body.variant-4 .section-1 {
+      background: #fafafa;
+      position: relative;
+      padding-bottom: 6rem;
+    }
+
+    body.variant-4 .section-2 {
+      background: linear-gradient(to bottom, #f0e9ff, #fafafa);
+      position: relative;
+      padding-bottom: 6rem;
+    }
+
+    body.variant-4 .section-3 {
+      background: #ffffff;
+    }
+
+    body.variant-4 .section-last {
+      background: linear-gradient(135deg, #7C3AED, #6D28D9);
+      color: white;
+      position: relative;
+      padding-top: 8rem;
+    }
+
+    body.variant-4 .wave-top {
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      transform: rotate(180deg);
+    }
+
+    /* Hero общий */
+    .hero {
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .variant-selector {
+        top: 10px;
+        right: 10px;
+        padding: 0.5rem;
+      }
+
+      .variant-selector h3 {
+        font-size: 0.875rem;
+      }
+
+      .variant-btn {
+        padding: 0.5rem;
+        font-size: 0.875rem;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.125rem;
+      }
+    }
+  </style>
+</head>
+<body class="variant-1">
+
+  <!-- Панель выбора варианта -->
+  <div class="variant-selector">
+    <h3>Выберите вариант:</h3>
+    <div class="variant-buttons">
+      <button class="variant-btn active" onclick="setVariant(1)">
+        🌈 Вариант 1<br>
+        <small>Плавный градиент</small>
+      </button>
+      <button class="variant-btn" onclick="setVariant(2)">
+        💜 Вариант 2<br>
+        <small>Фиолетовая палитра</small>
+      </button>
+      <button class="variant-btn" onclick="setVariant(3)">
+        ✨ Вариант 3<br>
+        <small>Минималистичный</small>
+      </button>
+      <button class="variant-btn" onclick="setVariant(4)">
+        🌊 Вариант 4<br>
+        <small>Волны</small>
+      </button>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero-title">Santech-Master</h1>
+      <p class="hero-subtitle">Ваш надёжный помощник в решении сантехнических проблем в городе Алматы</p>
+      <div style="margin: 2rem 0;">
+        <span style="display: block; margin: 0.5rem;">✓ Услуги сантехника в Алматы</span>
+        <span style="display: block; margin: 0.5rem;">✓ Быстрый выезд</span>
+        <span style="display: block; margin: 0.5rem;">✓ Качественная работа по гарантии</span>
+      </div>
+    </div>
+    <div class="wave">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="currentColor"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section section-1">
+    <div class="container">
+      <h2>Наши услуги</h2>
+      <div class="service-preview">
+        <h3>Прочистка засоров</h3>
+        <p>Быстрое устранение засоров в трубах с использованием современных методов и оборудования.</p>
+      </div>
+      <div class="service-preview">
+        <h3>Замена труб</h3>
+        <p>Профессиональная замена труб в жилых и коммерческих помещениях. Гарантия на все работы.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us Section -->
+  <section class="section section-2">
+    <div class="container">
+      <h2>Почему выбирают нас</h2>
+      <div class="service-preview">
+        <h3>Опыт и профессионализм</h3>
+        <p>Наши мастера имеют большой опыт работы и глубокие знания в области сантехники</p>
+      </div>
+      <div class="service-preview">
+        <h3>Быстрое реагирование</h3>
+        <p>Мы оперативно реагируем на заявки и приезжаем на вызов в кратчайшие сроки</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="section section-3">
+    <div class="container">
+      <h2>Стоимость услуг</h2>
+      <div class="price-preview">
+        <h3>Первичный осмотр</h3>
+        <div style="font-size: 2rem; font-weight: 700; color: #7C3AED;">5000 KZT</div>
+      </div>
+      <div class="price-preview">
+        <h3>Устранение засора</h3>
+        <div style="font-size: 2rem; font-weight: 700; color: #7C3AED;">от 3000 KZT</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="section section-4">
+    <div class="container">
+      <h2>Быстрый выезд</h2>
+      <p class="text-center">Мы ценим ваше время! Наш мастер прибудет к вам в течение 30 минут после вызова</p>
+      <div class="service-preview">
+        <h3>1. Заявка и консультация</h3>
+        <p>Клиент оставляет заявку на вызов сантехника</p>
+      </div>
+      <div class="service-preview">
+        <h3>2. Выезд сантехника</h3>
+        <p>Сантехник выезжает на объект в течение 30 минут</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacts Section -->
+  <section class="section section-5 section-last bottom-section">
+    <div class="wave-top">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="currentColor"></path>
+      </svg>
+    </div>
+    <div class="container">
+      <h2 style="color: white;">Контакты</h2>
+      <p class="text-center">Время работы: 24/7</p>
+      <p class="text-center">Адрес: Город Алматы</p>
+      <div style="margin-top: 2rem;">
+        <button style="padding: 1rem 2rem; margin: 0.5rem; background: white; color: #7C3AED; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">WhatsApp</button>
+        <button style="padding: 1rem 2rem; margin: 0.5rem; background: rgba(255,255,255,0.2); color: white; border: 2px solid white; border-radius: 8px; font-weight: 600; cursor: pointer;">Телефон</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function setVariant(number) {
+      // Удаляем все классы вариантов
+      document.body.className = '';
+
+      // Добавляем выбранный вариант
+      document.body.classList.add('variant-' + number);
+
+      // Обновляем активную кнопку
+      const buttons = document.querySelectorAll('.variant-btn');
+      buttons.forEach((btn, index) => {
+        if (index === number - 1) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Обновляем волны для варианта 4
+      const waves = document.querySelectorAll('.wave, .wave-top');
+      waves.forEach(wave => {
+        if (number === 4) {
+          wave.style.display = 'block';
+          // Обновляем цвет волн в зависимости от секции
+          const svg = wave.querySelector('svg');
+          if (svg) {
+            const section = wave.closest('section');
+            if (section.classList.contains('hero')) {
+              svg.style.color = '#fafafa';
+            } else if (section.classList.contains('section-last')) {
+              svg.style.color = '#ffffff';
+            }
+          }
+        } else {
+          wave.style.display = 'none';
+        }
+      });
+    }
+
+    // Инициализация
+    setVariant(1);
+  </script>
+
+</body>
+</html>

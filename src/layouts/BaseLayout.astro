@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 interface Props {
   title: string;
   description?: string;
@@ -52,9 +54,6 @@ const ogImage = new URL(image, Astro.site);
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <!-- Global Styles -->
-  <link rel="stylesheet" href="/src/styles/global.css">
 </head>
 <body>
   <slot />
