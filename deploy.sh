@@ -28,23 +28,16 @@ echo -e "${YELLOW}📦 Installing dependencies...${NC}"
 npm ci
 
 # Build project
-echo -e "${YELLOW}🔨 Building project...${NC}"
+echo -e "${YELLOW}🔨 Building static site...${NC}"
 npm run build
 
-# Restart PM2 process
-echo -e "${YELLOW}🔄 Restarting PM2 process...${NC}"
-if pm2 list | grep -q "santech-master"; then
-    pm2 restart santech-master
-else
-    pm2 start npm --name "santech-master" -- run preview -- --port 4321 --host 0.0.0.0
-fi
+# Reload Nginx to serve updated static files
+echo -e "${YELLOW}🔄 Reloading Nginx...${NC}"
+sudo systemctl reload nginx
 
-# Save PM2 configuration
-pm2 save
-
-# Check status
-echo -e "${YELLOW}📊 Checking PM2 status...${NC}"
-pm2 status santech-master
+# Check Nginx status
+echo -e "${YELLOW}📊 Checking Nginx status...${NC}"
+sudo systemctl status nginx --no-pager -l
 
 echo -e "${GREEN}✅ Deployment completed successfully!${NC}"
-echo -e "${GREEN}🌐 Site is live at: http://santech-master.com${NC}"
+echo -e "${GREEN}🌐 Site is live at: https://santech-master.com${NC}"

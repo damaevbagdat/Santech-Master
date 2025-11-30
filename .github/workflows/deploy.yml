@@ -37,8 +37,7 @@ jobs:
             git pull origin main
             npm ci
             npm run build
-            pm2 restart santech-master || pm2 start npm --name "santech-master" -- run preview -- --port 4321 --host 0.0.0.0
-            pm2 save
+            sudo systemctl reload nginx
 
       - name: Deployment Status
         if: success()
