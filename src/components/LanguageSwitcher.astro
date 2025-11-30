@@ -1,0 +1,57 @@
+---
+import { languages } from '../i18n/ui';
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const currentPath = Astro.url.pathname.replace(`/${lang}`, '') || '/';
+---
+
+<div class="language-switcher">
+  {Object.entries(languages).map(([langCode, label]) => (
+    <a
+      href={`/${langCode}${currentPath}`}
+      class:list={['lang-link', { active: lang === langCode }]}
+      aria-label={`Switch to ${label}`}
+    >
+      {langCode.toUpperCase()}
+    </a>
+  ))}
+</div>
+
+<style>
+  .language-switcher {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .lang-link {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--text-color, #333);
+    font-weight: 500;
+    transition: all 0.2s;
+    font-size: 0.875rem;
+  }
+
+  .lang-link:hover {
+    background-color: rgba(116, 78, 245, 0.1);
+    color: #744ef5;
+  }
+
+  .lang-link.active {
+    background-color: #744ef5;
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .language-switcher {
+      gap: 0.25rem;
+    }
+
+    .lang-link {
+      padding: 0.2rem 0.4rem;
+      font-size: 0.75rem;
+    }
+  }
+</style>

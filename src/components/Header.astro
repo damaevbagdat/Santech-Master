@@ -1,25 +1,34 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <header class="header">
   <div class="container">
     <nav class="nav">
-      <a href="/" class="logo">
+      <a href={`/${lang}`} class="logo">
         <img src="/logo.png" alt="Santech-Master" class="logo-img" />
       </a>
-      
+
       <ul class="nav-menu">
-        <li><a href="/#services">Услуги</a></li>
-        <li><a href="/#pricing">Стоимость услуг</a></li>
-        <li><a href="/#why">Почему мы?</a></li>
-        <li><a href="/#contacts">Контакты</a></li>
+        <li><a href={`/${lang}#services`}>{t('nav.services')}</a></li>
+        <li><a href={`/${lang}#pricing`}>{t('nav.pricing')}</a></li>
+        <li><a href={`/${lang}#why`}>{t('nav.why')}</a></li>
+        <li><a href={`/${lang}#contacts`}>{t('nav.contacts')}</a></li>
       </ul>
-      
-      <button class="mobile-menu-toggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+
+      <div class="nav-right">
+        <LanguageSwitcher />
+
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </nav>
   </div>
 </header>
@@ -66,7 +75,13 @@
   .nav-menu a:hover {
     color: var(--purple-primary);
   }
-  
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
   .mobile-menu-toggle {
     display: none;
     flex-direction: column;

@@ -1,4 +1,8 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <footer class="footer">
@@ -6,14 +10,14 @@
     <div class="footer-content">
       <div class="footer-section">
         <h3>Santech-Master</h3>
-        <p>Профессиональные сантехнические услуги в Алматы</p>
-        <p class="footer-tagline">Быстрый выезд • Качественная работа • Гарантия</p>
+        <p>{t('hero.subtitle')}</p>
+        <p class="footer-tagline">{t('footer.tagline')}</p>
       </div>
-      
+
       <div class="footer-section">
-        <h4>Контакты</h4>
-        <p>Город Алматы</p>
-        <p>Режим работы: 24/7</p>
+        <h4>{t('footer.contacts')}</h4>
+        <p>{t('footer.city')}</p>
+        <p>{t('footer.hours')}</p>
         <p>
           <a href="https://wa.me/77754710129" target="_blank" class="contact-link">WhatsApp</a>
         </p>
@@ -21,21 +25,21 @@
           <a href="tel:+77754710129" class="contact-link">+7 (775) 471-01-29</a>
         </p>
       </div>
-      
+
       <div class="footer-section">
-        <h4>Услуги</h4>
+        <h4>{t('footer.services')}</h4>
         <ul class="footer-links">
-          <li><a href="/#services">Прочистка засоров</a></li>
-          <li><a href="/#services">Замена труб</a></li>
-          <li><a href="/#services">Установка смесителей</a></li>
-          <li><a href="/#services">Ремонт оборудования</a></li>
-          <li><a href="/#services">Монтаж водоснабжения</a></li>
+          <li><a href={`/${lang}#services`}>{t('services.1.title')}</a></li>
+          <li><a href={`/${lang}#services`}>{t('services.2.title')}</a></li>
+          <li><a href={`/${lang}#services`}>{t('services.3.title')}</a></li>
+          <li><a href={`/${lang}#services`}>{t('services.4.title')}</a></li>
+          <li><a href={`/${lang}#services`}>{t('services.5.title')}</a></li>
         </ul>
       </div>
     </div>
-    
+
     <div class="footer-bottom">
-      <p>&copy; {new Date().getFullYear()} Santech-Master. Все права защищены.</p>
+      <p>&copy; {new Date().getFullYear()} Santech-Master. {t('footer.rights')}</p>
     </div>
   </div>
 </footer>

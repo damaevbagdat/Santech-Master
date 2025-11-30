@@ -1,42 +1,46 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="contact-form-wrapper">
   <form id="contactForm" class="contact-form">
     <div class="form-group">
-      <label for="name">Ваше имя *</label>
+      <label for="name">{t('form.name')} *</label>
       <input
         type="text"
         id="name"
         name="name"
         required
-        placeholder="Введите ваше имя"
+        placeholder={t('form.name.placeholder')}
       />
     </div>
 
     <div class="form-group">
-      <label for="phone">Телефон *</label>
+      <label for="phone">{t('form.phone')} *</label>
       <input
         type="tel"
         id="phone"
         name="phone"
         required
-        placeholder="+7 (___) ___-__-__"
+        placeholder={t('form.phone.placeholder')}
       />
     </div>
 
     <div class="form-group">
-      <label for="message">Сообщение (необязательно)</label>
+      <label for="message">{t('form.message')}</label>
       <textarea
         id="message"
         name="message"
         rows="4"
-        placeholder="Опишите вашу проблему или вопрос"
+        placeholder={t('form.message.placeholder')}
       ></textarea>
     </div>
 
     <button type="submit" class="submit-btn">
-      <span class="btn-text">Отправить заявку</span>
+      <span class="btn-text">{t('form.submit')}</span>
       <span class="loader" style="display: none;"></span>
     </button>
 
@@ -217,12 +221,6 @@
       message: formData.get('message') as string || '',
     };
 
-    // Валидация
-    if (!data.name || !data.phone) {
-      showMessage('Пожалуйста, заполните обязательные поля', 'error');
-      return;
-    }
-
     // Показываем loader
     submitBtn.disabled = true;
     btnText.style.display = 'none';
@@ -241,14 +239,14 @@
       const result = await response.json();
 
       if (result.success) {
-        showMessage(result.message || 'Заявка успешно отправлена!', 'success');
+        showMessage(result.message, 'success');
         form.reset();
       } else {
-        showMessage(result.error || 'Произошла ошибка. Попробуйте позже.', 'error');
+        showMessage(result.error, 'error');
       }
     } catch (error) {
       console.error('Form submission error:', error);
-      showMessage('Не удалось отправить заявку. Проверьте подключение к интернету.', 'error');
+      showMessage('Network error. Please try again.', 'error');
     } finally {
       // Скрываем loader
       submitBtn.disabled = false;
