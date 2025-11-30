@@ -47,7 +47,7 @@ npm run build
 - [AUTO-DEPLOY.md](AUTO-DEPLOY.md) - Настройка автодеплоя
 - [DEPLOY.md](DEPLOY.md) - Ручной деплой
 
-**Production сервер:** https://santech-master.com (213.130.74.133)
+**Production сервер:** https://santech-master.com (194.32.142.237)
 
 ## Структура проекта
 
