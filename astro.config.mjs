@@ -6,7 +6,7 @@ import node from '@astrojs/node';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://santech-master.com',
-  output: 'hybrid', // Гибридный режим: статика + API
+  output: 'server', // Server-side rendering для API endpoints
   adapter: node({
     mode: 'standalone'
   }),
