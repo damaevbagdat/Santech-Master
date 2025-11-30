@@ -1,0 +1,16 @@
+# robots.txt for Santech-Master
+# https://santech-master.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://santech-master.com/sitemap-index.xml
+Sitemap: https://santech-master.com/sitemap-0.xml
+
+# Crawl delay (optional - помогает не перегружать сервер)
+Crawl-delay: 10
+
+# Disallow admin and system paths
+Disallow: /api/
+Disallow: /_astro/

@@ -4,9 +4,101 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FloatingButtons from '../components/FloatingButtons.astro';
 import ContactForm from '../components/ContactForm.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://santech-master.com/#organization",
+  "name": "Santech-Master",
+  "alternateName": "Санехнические услуги в Алматы",
+  "url": "https://santech-master.com",
+  "logo": "https://santech-master.com/logo.png",
+  "image": "https://santech-master.com/logo.png",
+  "description": "Санехнические услуги в Алматы. Быстрый выезд мастера в течение 30 минут. Прочистка засоров, замена труб, установка смесителей. Работаем 24/7. Гарантия качества.",
+  "telephone": "+7-775-471-01-29",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Алматы",
+    "addressCountry": "KZ"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "43.2220",
+    "longitude": "76.8512"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Алматы"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "opens": "00:00",
+    "closes": "23:59"
+  },
+  "priceRange": "от 3000 KZT",
+  "currenciesAccepted": "KZT",
+  "paymentAccepted": "наличные, карта",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Сантехнические услуги",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Прочистка засоров",
+          "description": "Быстрое устранение засоров в трубах"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Замена труб",
+          "description": "Профессиональная замена труб"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Установка смесителей и кранов",
+          "description": "Монтаж и замена смесителей"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Ремонт сантехнического оборудования",
+          "description": "Ремонт унитазов, раковин, ванн"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Монтаж систем водоснабжения",
+          "description": "Установка систем водоснабжения"
+        }
+      }
+    ]
+  }
+};
 ---
 
 <BaseLayout title="Главная - Санехнические услуги в Алматы">
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <Header />
 
   <main>
