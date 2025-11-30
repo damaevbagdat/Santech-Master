@@ -1,15 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import node from '@astrojs/node';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://santech-master.com',
-  outDir: './dist',
+  output: 'hybrid', // Гибридный режим: статика + API
+  adapter: node({
+    mode: 'standalone'
+  }),
   integrations: [sitemap()],
-  vite: {
-    preview: {
-      allowedHosts: ['santech-master.com', 'www.santech-master.com', '194.32.142.237'],
-    },
-  },
 });
