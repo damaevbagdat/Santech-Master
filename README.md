@@ -41,10 +41,13 @@ npm run build
 
 ## Деплой
 
-Проект готов для деплоя на:
-- Vercel
-- Netlify
-- Cloudflare Pages
+**Автоматический деплой:** При каждом `git push` в `main` сайт автоматически обновляется на VPS.
+
+Подробности:
+- [AUTO-DEPLOY.md](AUTO-DEPLOY.md) - Настройка автодеплоя
+- [DEPLOY.md](DEPLOY.md) - Ручной деплой
+
+**Production сервер:** https://santech-master.com (213.130.74.133)
 
 ## Структура проекта
 
