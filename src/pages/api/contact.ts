@@ -1,7 +1,10 @@
 import type { APIRoute } from 'astro';
+import { checkRateLimit, getClientIP } from '../../utils/rateLimit';
+import { verifyTurnstileToken } from '../../utils/turnstile';
 
-const TELEGRAM_BOT_TOKEN = import.meta.env.TELEGRAM_BOT_TOKEN || '8597371163:AAGnoWQkEzj7LY5Z7Fl6uUISRLoxFoDzNV0';
-const TELEGRAM_CHAT_ID = '1243618822'; // Chat ID владельца бота
+const TELEGRAM_BOT_TOKEN = import.meta.env.TELEGRAM_BOT_TOKEN;
+const TELEGRAM_CHAT_ID = import.meta.env.TELEGRAM_CHAT_ID;
+const TURNSTILE_SECRET_KEY = import.meta.env.TURNSTILE_SECRET_KEY;
 
 // Функция для отправки сообщения в Telegram
 async function sendTelegramMessage(chatId: string, message: string): Promise<boolean> {
@@ -36,8 +39,77 @@ async function sendTelegramMessage(chatId: string, message: string): Promise<boo
 
 export const POST: APIRoute = async ({ request }) => {
   try {
+    // 1. Проверка конфигурации
+    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+      console.error('Telegram credentials not configured');
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: 'Сервис временно недоступен'
+        }),
+        { status: 500 }
+      );
+    }
+
+    // 2. Rate Limiting - защита от спама по IP
+    const clientIP = getClientIP(request);
+    const rateLimitCheck = checkRateLimit(clientIP);
+
+    if (!rateLimitCheck.allowed) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: `Слишком много запросов. Попробуйте через ${rateLimitCheck.retryAfter} секунд.`
+        }),
+        {
+          status: 429,
+          headers: {
+            'Retry-After': rateLimitCheck.retryAfter?.toString() || '60'
+          }
+        }
+      );
+    }
+
     const data = await request.json();
-    const { name, phone, message: userMessage } = data;
+    const { name, phone, message: userMessage, honeypot, turnstileToken } = data;
+
+    // 3. Honeypot проверка - ловушка для ботов
+    if (honeypot) {
+      console.log('Bot detected via honeypot field');
+      // Возвращаем успех, чтобы бот не понял что его поймали
+      return new Response(
+        JSON.stringify({
+          success: true,
+          message: 'Заявка принята'
+        }),
+        { status: 200 }
+      );
+    }
+
+    // 4. Cloudflare Turnstile проверка (если настроен)
+    if (TURNSTILE_SECRET_KEY && TURNSTILE_SECRET_KEY !== 'your_secret_key_here') {
+      if (!turnstileToken) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            error: 'Пожалуйста, подтвердите что вы не робот'
+          }),
+          { status: 400 }
+        );
+      }
+
+      const isValidToken = await verifyTurnstileToken(turnstileToken, TURNSTILE_SECRET_KEY);
+      if (!isValidToken) {
+        console.log('Invalid Turnstile token from IP:', clientIP);
+        return new Response(
+          JSON.stringify({
+            success: false,
+            error: 'Проверка безопасности не пройдена. Попробуйте еще раз.'
+          }),
+          { status: 400 }
+        );
+      }
+    }
 
     // Валидация данных
     if (!name || !phone) {
