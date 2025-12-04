@@ -1,8 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
-
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+// Статичный баннер с акцией (без переводов)
 ---
 
 <div class="promo-banner">
@@ -13,7 +10,7 @@ const t = useTranslations(lang);
         <span class="promo-title">АКЦИЯ!</span>
         <span class="promo-message">Выезд специалиста БЕСПЛАТНО при заказе сегодня</span>
       </div>
-      <a href={`/${lang}#contacts`} class="promo-btn">
+      <a href="#contacts" class="promo-btn">
         Заказать сейчас
       </a>
     </div>
