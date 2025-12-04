@@ -18,7 +18,7 @@ export const ui = {
     'hero.feature1': '• Услуги сантехника в Алматы',
     'hero.feature2': '• Быстрый выезд',
     'hero.feature3': '• Качественная работа по гарантии',
-    'hero.cta': 'Вызвать',
+    'hero.cta': 'Оставить заявку',
 
     'services.title': 'Наши услуги',
     'services.subtitle': 'Мы предоставляем широкий спектр сантехнических услуг. Ознакомьтесь с перечнем услуг, их стоимостью и условиями.',
@@ -95,7 +95,7 @@ export const ui = {
     'hero.feature1': '• Алматыда сантехник қызметтері',
     'hero.feature2': '• Жылдам шығу',
     'hero.feature3': '• Кепілдікпен сапалы жұмыс',
-    'hero.cta': 'Шақыру',
+    'hero.cta': 'Өтінім қалдыру',
 
     'services.title': 'Біздің қызметтер',
     'services.subtitle': 'Біз сантехникалық қызметтердің кең ауқымын ұсынамыз. Қызметтер тізімімен, олардың құнымен және шарттарымен танысыңыз.',
@@ -172,7 +172,7 @@ export const ui = {
     'hero.feature1': '• Plumbing services in Almaty',
     'hero.feature2': '• Fast arrival',
     'hero.feature3': '• Quality work with guarantee',
-    'hero.cta': 'Call Now',
+    'hero.cta': 'Submit Request',
 
     'services.title': 'Our Services',
     'services.subtitle': 'We provide a wide range of plumbing services. Check out our list of services, their prices and terms.',

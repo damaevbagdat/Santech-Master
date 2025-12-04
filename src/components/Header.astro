@@ -240,10 +240,25 @@ const t = useTranslations(lang);
       display: flex;
     }
 
-    /* На мобилке скрываем телефон - есть плавающие кнопки */
-    .header-phone,
+    /* На мобилке показываем компактный телефон */
+    .header-phone {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+      margin-right: 1rem;
+    }
+
+    .phone-number {
+      font-size: 14px;
+    }
+
+    .phone-hint {
+      display: none; /* Скрываем "Работаем 24/7" на мобилке */
+    }
+
     .phone-cta-btn {
-      display: none;
+      display: none; /* Скрываем кнопку, оставляем только номер */
     }
 
     /* Затемнение фона при открытом меню */
