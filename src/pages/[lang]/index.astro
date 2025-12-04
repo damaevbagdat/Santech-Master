@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
+import PromoBanner from '../../components/PromoBanner.astro';
+import Reviews from '../../components/Reviews.astro';
 import Footer from '../../components/Footer.astro';
 import FloatingButtons from '../../components/FloatingButtons.astro';
 import ContactForm from '../../components/ContactForm.astro';
@@ -105,6 +107,7 @@ const schema = {
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <Header />
+  <PromoBanner />
 
   <main>
     <!-- Hero Section -->
@@ -209,6 +212,9 @@ const schema = {
         </div>
       </div>
     </section>
+
+    <!-- Reviews - Социальное доказательство -->
+    <Reviews />
 
     <!-- Pricing -->
     <section id="pricing" class="section section-dark">

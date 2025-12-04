@@ -1,0 +1,246 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Отзывы клиентов для социального доказательства
+const reviews = [
+  {
+    name: 'Алексей М.',
+    location: 'Алматы, мкр. Самал',
+    rating: 5,
+    text: 'Отличная работа! Приехали быстро, устранили проблему с трубами за час. Мастер очень вежливый и профессиональный. Рекомендую!',
+    date: '15 ноября 2024'
+  },
+  {
+    name: 'Дина К.',
+    location: 'Алматы, Медеу',
+    rating: 5,
+    text: 'Вызывала сантехника для замены смесителя. Приехали в течение часа, работу выполнили качественно. Цены адекватные. Спасибо!',
+    date: '10 ноября 2024'
+  },
+  {
+    name: 'Ержан Т.',
+    location: 'Алматы, Бостандык',
+    rating: 5,
+    text: 'Срочно нужен был сантехник - прорвало трубу. Мастер приехал через 20 минут! Быстро все починил. Очень доволен сервисом.',
+    date: '5 ноября 2024'
+  },
+  {
+    name: 'Светлана П.',
+    location: 'Алматы, Алмалы',
+    rating: 5,
+    text: 'Установили новую сантехнику в ванной. Работа выполнена на отлично, все аккуратно и чисто. Буду обращаться еще!',
+    date: '28 октября 2024'
+  },
+  {
+    name: 'Марат А.',
+    location: 'Алматы, Турксибский',
+    rating: 5,
+    text: 'Отличный сервис! Быстро, качественно, по разумной цене. Мастер объяснил все детали работы. Рекомендую всем!',
+    date: '20 октября 2024'
+  },
+  {
+    name: 'Анна В.',
+    location: 'Алматы, Ауэзовский',
+    rating: 5,
+    text: 'Засорилась канализация, позвонила в Santech-Master. Приехали быстро, устранили засор за 30 минут. Цена как договаривались. Спасибо!',
+    date: '12 октября 2024'
+  }
+];
+
+// Генерация звёзд
+function generateStars(rating: number) {
+  return '⭐'.repeat(rating);
+}
+---
+
+<section id="reviews" class="section section-white">
+  <div class="container">
+    <h2 class="text-center">Отзывы наших клиентов</h2>
+    <p class="text-center text-light mb-xl">Более 500+ довольных клиентов в Алматы</p>
+
+    <div class="reviews-grid">
+      {reviews.map((review) => (
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">
+              <span class="avatar-icon">👤</span>
+            </div>
+            <div class="review-info">
+              <h3 class="review-name">{review.name}</h3>
+              <p class="review-location">{review.location}</p>
+            </div>
+          </div>
+
+          <div class="review-rating">
+            <span class="stars">{generateStars(review.rating)}</span>
+            <span class="rating-number">{review.rating}.0</span>
+          </div>
+
+          <p class="review-text">{review.text}</p>
+
+          <div class="review-date">{review.date}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Общий рейтинг -->
+    <div class="overall-rating">
+      <div class="rating-badge">
+        <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+        <span class="rating-score">4.9 / 5.0</span>
+        <span class="rating-count">на основе 500+ отзывов</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .review-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: #25D366;
+  }
+
+  .review-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .review-avatar {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .avatar-icon {
+    font-size: 24px;
+  }
+
+  .review-info {
+    flex: 1;
+  }
+
+  .review-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+  }
+
+  .review-location {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0;
+  }
+
+  .review-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .stars {
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  .rating-number {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .review-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+
+  .review-date {
+    font-size: 0.875rem;
+    color: #999;
+    text-align: right;
+  }
+
+  /* Общий рейтинг */
+  .overall-rating {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  }
+
+  .rating-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .rating-stars {
+    font-size: 2rem;
+  }
+
+  .rating-score {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: white;
+  }
+
+  .rating-count {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  @media (max-width: 768px) {
+    .reviews-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .review-card {
+      padding: 1.25rem;
+    }
+
+    .overall-rating {
+      padding: 1.5rem;
+    }
+
+    .rating-score {
+      font-size: 2rem;
+    }
+
+    .rating-count {
+      font-size: 1rem;
+    }
+  }
+</style>

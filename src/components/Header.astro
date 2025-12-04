@@ -21,6 +21,18 @@ const t = useTranslations(lang);
       </ul>
 
       <div class="nav-right">
+        <!-- Телефон в шапке - КРИТИЧНО для конверсии! -->
+        <div class="header-phone">
+          <a href="tel:+77754710129" class="phone-number">
+            📞 +7 (775) 471-01-29
+          </a>
+          <span class="phone-hint">Работаем 24/7</span>
+        </div>
+
+        <a href="tel:+77754710129" class="phone-cta-btn">
+          Позвонить сейчас
+        </a>
+
         <LanguageSwitcher />
 
         <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
@@ -147,6 +159,52 @@ const t = useTranslations(lang);
     transform: rotate(-45deg) translate(7px, -7px);
   }
 
+  /* Телефон в шапке - для увеличения конверсии */
+  .header-phone {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .phone-number {
+    font-size: 22px;
+    font-weight: 700;
+    color: #25D366;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .phone-number:hover {
+    color: #128C7E;
+    transform: scale(1.05);
+  }
+
+  .phone-hint {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+  }
+
+  .phone-cta-btn {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: white;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+  }
+
+  .phone-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.5);
+  }
+
   @media (max-width: 768px) {
     .nav-menu {
       position: fixed;
@@ -180,6 +238,12 @@ const t = useTranslations(lang);
 
     .mobile-menu-toggle {
       display: flex;
+    }
+
+    /* На мобилке скрываем телефон - есть плавающие кнопки */
+    .header-phone,
+    .phone-cta-btn {
+      display: none;
     }
 
     /* Затемнение фона при открытом меню */

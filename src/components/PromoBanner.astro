@@ -1,0 +1,128 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="promo-banner">
+  <div class="container">
+    <div class="promo-content">
+      <span class="promo-icon">🔥</span>
+      <div class="promo-text">
+        <span class="promo-title">АКЦИЯ!</span>
+        <span class="promo-message">Выезд специалиста БЕСПЛАТНО при заказе сегодня</span>
+      </div>
+      <a href={`/${lang}#contacts`} class="promo-btn">
+        Заказать сейчас
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .promo-banner {
+    background: linear-gradient(135deg, #FF6B35, #F7931E);
+    padding: 1rem 0;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+    }
+    50% {
+      box-shadow: 0 4px 20px rgba(255, 107, 53, 0.5);
+    }
+  }
+
+  .promo-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .promo-icon {
+    font-size: 32px;
+    animation: bounce 1s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .promo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .promo-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .promo-message {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  .promo-btn {
+    padding: 12px 28px;
+    background: white;
+    color: #FF6B35;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+  }
+
+  .promo-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .promo-banner {
+      padding: 0.75rem 0;
+    }
+
+    .promo-content {
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .promo-icon {
+      font-size: 28px;
+    }
+
+    .promo-title {
+      font-size: 20px;
+    }
+
+    .promo-message {
+      font-size: 14px;
+    }
+
+    .promo-btn {
+      width: 100%;
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+  }
+</style>
