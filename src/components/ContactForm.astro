@@ -4,12 +4,23 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Cloudflare Turnstile Site Key (публичный ключ)
-const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+// Web3Forms Access Key (публичный ключ)
+// Получите бесплатный ключ на https://web3forms.com
+const WEB3FORMS_ACCESS_KEY = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || 'YOUR_ACCESS_KEY_HERE';
 ---
 
 <div class="contact-form-wrapper">
-  <form id="contactForm" class="contact-form">
+  <form id="contactForm" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+    <!-- Web3Forms Access Key -->
+    <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+
+    <!-- Telegram notification (опционально) -->
+    <input type="hidden" name="subject" value="Новая заявка с сайта Santech-Master" />
+    <input type="hidden" name="from_name" value="Santech-Master Website" />
+
+    <!-- Редирект после отправки (опционально) -->
+    <input type="hidden" name="redirect" value="https://santech-master.com/success" />
+
     <div class="form-group">
       <label for="name">{t('form.name')} *</label>
       <input
@@ -42,22 +53,8 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
       ></textarea>
     </div>
 
-    <!-- Honeypot поле - невидимое для людей, но видимое для ботов -->
-    <div class="honeypot" aria-hidden="true">
-      <label for="website">Не заполняйте это поле</label>
-      <input
-        type="text"
-        id="website"
-        name="website"
-        tabindex="-1"
-        autocomplete="off"
-      />
-    </div>
-
-    <!-- Cloudflare Turnstile CAPTCHA -->
-    {TURNSTILE_SITE_KEY && TURNSTILE_SITE_KEY !== 'your_site_key_here' && (
-      <div class="turnstile-widget" id="turnstile-widget"></div>
-    )}
+    <!-- Honeypot для защиты от ботов (Web3Forms встроенная защита) -->
+    <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
     <button type="submit" class="submit-btn">
       <span class="btn-text">{t('form.submit')}</span>
@@ -67,11 +64,6 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     <div class="form-message" style="display: none;"></div>
   </form>
 </div>
-
-<!-- Cloudflare Turnstile Script -->
-{TURNSTILE_SITE_KEY && TURNSTILE_SITE_KEY !== 'your_site_key_here' && (
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-)}
 
 <style>
   .contact-form-wrapper {
@@ -185,22 +177,6 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     color: #ef4444;
   }
 
-  /* Honeypot - скрываем поле от пользователей, но оставляем для ботов */
-  .honeypot {
-    position: absolute;
-    left: -9999px;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-  }
-
-  /* Turnstile виджет */
-  .turnstile-widget {
-    margin: 1.5rem 0;
-    display: flex;
-    justify-content: center;
-  }
-
   @media (max-width: 768px) {
     .contact-form {
       padding: 1.5rem;
@@ -213,39 +189,17 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   }
 </style>
 
-<script define:vars={{ TURNSTILE_SITE_KEY }}>
-  const form = document.getElementById('contactForm');
-  const submitBtn = form.querySelector('.submit-btn');
-  const btnText = submitBtn.querySelector('.btn-text');
-  const loader = submitBtn.querySelector('.loader');
-  const formMessage = form.querySelector('.form-message');
-
-  // Turnstile виджет ID
-  let turnstileWidgetId = null;
-
-  // Инициализация Cloudflare Turnstile
-  if (TURNSTILE_SITE_KEY && TURNSTILE_SITE_KEY !== 'your_site_key_here') {
-    window.onloadTurnstileCallback = function () {
-      const widgetContainer = document.getElementById('turnstile-widget');
-      if (widgetContainer && window.turnstile) {
-        turnstileWidgetId = window.turnstile.render('#turnstile-widget', {
-          sitekey: TURNSTILE_SITE_KEY,
-          theme: 'dark',
-          language: 'ru',
-        });
-      }
-    };
-
-    // Если скрипт уже загружен
-    if (window.turnstile) {
-      window.onloadTurnstileCallback();
-    }
-  }
+<script>
+  const form = document.getElementById('contactForm') as HTMLFormElement;
+  const submitBtn = form.querySelector('.submit-btn') as HTMLButtonElement;
+  const btnText = submitBtn.querySelector('.btn-text') as HTMLSpanElement;
+  const loader = submitBtn.querySelector('.loader') as HTMLSpanElement;
+  const formMessage = form.querySelector('.form-message') as HTMLDivElement;
 
   // Форматирование телефона
-  const phoneInput = document.getElementById('phone');
+  const phoneInput = document.getElementById('phone') as HTMLInputElement;
   phoneInput.addEventListener('input', (e) => {
-    const target = e.target;
+    const target = e.target as HTMLInputElement;
     let value = target.value.replace(/\D/g, '');
 
     if (value.startsWith('8')) {
@@ -273,25 +227,9 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     target.value = formatted;
   });
 
+  // Обработка отправки формы через AJAX
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
-    // Получаем данные формы
-    const formData = new FormData(form);
-
-    // Получаем Turnstile токен (если настроен)
-    let turnstileToken = null;
-    if (turnstileWidgetId !== null && window.turnstile) {
-      turnstileToken = window.turnstile.getResponse(turnstileWidgetId);
-    }
-
-    const data = {
-      name: formData.get('name'),
-      phone: formData.get('phone'),
-      message: formData.get('message') || '',
-      honeypot: formData.get('website') || '', // Honeypot поле
-      turnstileToken: turnstileToken, // CAPTCHA токен
-    };
 
     // Показываем loader
     submitBtn.disabled = true;
@@ -300,40 +238,24 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     formMessage.style.display = 'none';
 
     try {
-      const response = await fetch('/api/contact', {
+      const formData = new FormData(form);
+
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+        body: formData
       });
 
       const result = await response.json();
 
       if (result.success) {
-        showMessage(result.message, 'success');
+        showMessage('Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.', 'success');
         form.reset();
-
-        // Сбрасываем Turnstile виджет
-        if (turnstileWidgetId !== null && window.turnstile) {
-          window.turnstile.reset(turnstileWidgetId);
-        }
       } else {
-        showMessage(result.error, 'error');
-
-        // Сбрасываем Turnstile при ошибке
-        if (turnstileWidgetId !== null && window.turnstile) {
-          window.turnstile.reset(turnstileWidgetId);
-        }
+        showMessage('Не удалось отправить сообщение. Пожалуйста, попробуйте позже.', 'error');
       }
     } catch (error) {
       console.error('Form submission error:', error);
       showMessage('Ошибка сети. Попробуйте еще раз.', 'error');
-
-      // Сбрасываем Turnstile при ошибке
-      if (turnstileWidgetId !== null && window.turnstile) {
-        window.turnstile.reset(turnstileWidgetId);
-      }
     } finally {
       // Скрываем loader
       submitBtn.disabled = false;
