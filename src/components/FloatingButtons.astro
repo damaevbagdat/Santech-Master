@@ -80,20 +80,21 @@
     background: linear-gradient(135deg, var(--purple-dark), #5B21B6);
   }
 
-  /* Кнопка WhatsApp справа */
+  /* Кнопка WhatsApp по центру */
   .floating-btn-whatsapp {
-    right: 30px;
+    left: 50%;
+    transform: translateX(-50%);
     background: linear-gradient(135deg, #25D366, #128C7E);
   }
 
   .floating-btn-whatsapp:hover {
+    transform: translateX(-50%) translateY(-3px);
     background: linear-gradient(135deg, #128C7E, #075E54);
   }
 
-  /* Кнопка "Позвонить" справа выше */
+  /* Кнопка "Позвонить" справа */
   .floating-btn-call {
     right: 30px;
-    bottom: 100px;
     background: linear-gradient(135deg, #EF4444, #DC2626);
   }
 
@@ -114,12 +115,12 @@
     }
 
     .floating-btn-whatsapp {
-      right: 15px;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .floating-btn-call {
       right: 15px;
-      bottom: 90px;
     }
 
     .btn-text {
